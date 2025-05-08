@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@api/peopledatalabs": "file:.api/apis/peopledatalabs",
     "axios": "^1.9.0",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",

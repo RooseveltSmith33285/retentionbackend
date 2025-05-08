@@ -4,5 +4,6 @@
     { "Category": "Job Satisfaction", "Phrase": "hate this job", "RiskScore": 4 },
     { "Category": "Family & Work-Life Balance", "Phrase": "can’t balance work and kids", "RiskScore": 5 },
     { "Category": "Communication & Leadership", "Phrase": "manager won’t listen", "RiskScore": 4 }
-   
   ]
+
+ 

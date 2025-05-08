@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "apis": [
+    {
+      "identifier": "peopledatalabs",
+      "source": "@peopledatalabs/v5.0#lz96wfm4bi8jgn",
+      "integrity": "sha512-1rwl8wYmBCBAwPvua2lcszYTWSHD95pqIYdPhRvHswYv2k7+4CvADVDsEYxc825J5zcsXUQYSTvD+O4zm/KaHQ==",
+      "installerVersion": "6.1.3"
+    }
+  ]
+}

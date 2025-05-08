@@ -368,7 +368,7 @@ async function processEmployees(employees) {
     
           },
           headers: {
-            'x-rapidapi-key': 'ddef0c86b8msh3aefb6180e0680ep1f61a6jsnff9d95f9e9a8',
+            'x-rapidapi-key': '541b5657f9msh2d0cb1e2f2963a2p1211a5jsnd1aff8946588',
             'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
           }
         };
@@ -394,7 +394,7 @@ async function processEmployees(employees) {
           username: username,
         },
         headers: {
-          'x-rapidapi-key': 'ddef0c86b8msh3aefb6180e0680ep1f61a6jsnff9d95f9e9a8',
+          'x-rapidapi-key': '541b5657f9msh2d0cb1e2f2963a2p1211a5jsnd1aff8946588',
           'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
         }
       };

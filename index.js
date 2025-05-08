@@ -9,7 +9,7 @@ const xlsx = require('xlsx')
 const cors=require('cors')
 
 const app = express();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '/tmp/public/files/uploads' });
 
 app.use(express.json());
 app.use(cors())

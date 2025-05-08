@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors())
 
 
-connection
+
 function cleanup(filePath) {
   try {
     if (fs.existsSync(filePath)) {

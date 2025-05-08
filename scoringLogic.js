@@ -360,9 +360,9 @@ async function processEmployees(employees) {
           method: 'GET',
           url: 'https://linkedin-data-api.p.rapidapi.com/search-people',
           params: {
-            firstName: 'Todd',
-            lastName:'Burch ',
-            company:'Lupen',
+            firstName: 'Roosevelt',
+            lastName:'Smith ',
+            company:'Enrichify',
             postedAt:getLast90Days()
              
     

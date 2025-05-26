@@ -27,16 +27,16 @@ async function fetchMentions(keyword, socialMedia,done) {
         const username = socialMedia.linkedin_url.split('/').pop();
         const linkedinOptions = {
           method: 'GET',
-          url: 'https://linkedin-data-api.p.rapidapi.com/get-profile-posts',
-          params: { username: username },
+          url: 'https://linkedin-api8.p.rapidapi.com/get-profile-posts?username=roosevelt-smith-285b4a9b',
+        
           headers: {
-            'x-rapidapi-key': '074cf77d1amsh7dcb0779569cf53p13dfc9jsn48c665c8ed27',
-            'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
+            'x-rapidapi-key': '423577dcd1msh3e31e9d469ec9a7p154656jsneec34d2c7ecd',
+            'x-rapidapi-host': 'linkedin-api8.p.rapidapi.com'
           }
         };
   
         const linkedinResponse = await axios.request(linkedinOptions);
-       
+       console.log(linkedinResponse.data)
         const linkedinPosts = linkedinResponse.data.data
           .filter(post => post?.text || post?.resharedPost?.text)
           .map(post => ({

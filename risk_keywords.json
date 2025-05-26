@@ -1,9 +1,5 @@
 [
-    { "Category": "Schedule & Workload", "Phrase": "another late night", "RiskScore": 2 },
-    { "Category": "Money & Compensation", "Phrase": "not getting paid enough", "RiskScore": 3 },
-    { "Category": "Job Satisfaction", "Phrase": "hate this job", "RiskScore": 4 },
-    { "Category": "Family & Work-Life Balance", "Phrase": "can’t balance work and kids", "RiskScore": 5 },
-    { "Category": "Communication & Leadership", "Phrase": "manager won’t listen", "RiskScore": 4 }
+    { "Category": "Schedule & Workload", "Phrase": "another late night", "RiskScore": 2 }
   ]
 
  

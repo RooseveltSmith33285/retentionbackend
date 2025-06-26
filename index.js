@@ -4,7 +4,7 @@ const csv = require('csv-parser');
 const fs = require('fs');
 const axios = require('axios');
 const scoring = require('./scoringLogic');
-const connection=require('./connection')
+
 const xlsx = require('xlsx')
 const cors=require('cors')
 

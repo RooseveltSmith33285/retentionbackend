@@ -1,5 +1,23 @@
-[
-    { "Category": "Schedule & Workload", "Phrase": "another late night", "RiskScore": 2 }
-  ]
-
- 
+{
+  "JobSatisfaction": {
+    "i don’t like my job": 10,
+    "feeling stuck": 8,
+    "no career growth": 11
+  },
+  "Workload": {
+    "overwhelmed at work": 9,
+    "too many meetings": 6
+  },
+  "Compensation": {
+    "underpaid": 10,
+    "need a raise": 8
+  },
+  "Communication": {
+    "manager doesn’t listen": 7,
+    "poor communication": 6
+  },
+  "WorkLifeBalance": {
+    "no time for family": 9,
+    "working weekends": 8
+  }
+}

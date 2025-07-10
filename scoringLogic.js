@@ -587,7 +587,9 @@ function createDefaultResult(emp) {
     'communication & leadership': 0,
     'lack of rest': 0,
     totalScore: 0,
-    riskLevel: 'Low'
+    riskLevel: 'Low',
+    overallScore: 0,
+    categoryScores: {},
   };
 }
 

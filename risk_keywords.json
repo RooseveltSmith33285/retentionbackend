@@ -1,23 +1,27 @@
 {
-  "JobSatisfaction": {
-    "i don’t like my job": 10,
-    "feeling stuck": 8,
-    "no career growth": 11
-  },
-  "Workload": {
-    "overwhelmed at work": 9,
-    "too many meetings": 6
-  },
-  "Compensation": {
-    "underpaid": 10,
-    "need a raise": 8
+  "WorkLifeBalance": {
+    "flexible schedule": 8.55,
+    "work from home": 7.33,
+    "remote work": 7.02,
+    "supportive manager": 7.25,
+    "good balance": 8.95,
+    "healthy boundaries": 8.5,
+    "no overtime": 8.77,
+    "time off": 8.42,
+    "paid leave": 8.28,
+    "mental health support": 9.65,
+    "burned out": 2.83
   },
   "Communication": {
-    "manager doesn’t listen": 7,
-    "poor communication": 6
+    "open dialogue": 8.16,
+    "poor communication": 3.04
   },
-  "WorkLifeBalance": {
-    "no time for family": 9,
-    "working weekends": 8
+  "Financial": {
+    "paid well": 9.45,
+    "underpaid": 2.05
+  },
+  "Schedule": {
+    "on time": 9.17,
+    "unpredictable schedule": 1.06
   }
 }

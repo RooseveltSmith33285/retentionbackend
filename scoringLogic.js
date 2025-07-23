@@ -311,6 +311,7 @@ const API_KEY = '49174427b558d2af53e538f950d775f5';
 const BASE_URL = 'https://api.social-searcher.com/v2/search';
 
 const peopledatalabs = require('@api/peopledatalabs');
+const RetentionData = require('./retentiondata');
 
 peopledatalabs.auth('30d80327aac2828dd4df86eaf9ec379dd5bae8d495490b2c41f4f313ca34adea');
 
@@ -415,6 +416,7 @@ async function fetchAllSocialMediaPosts(socialMedia) {
         };
 
         const facebookResponse = await axios.request(facebookOptions);
+      
         const profileId = facebookResponse.data.profile.profile_id;
 
         const facebookPostOptions = {
@@ -477,11 +479,11 @@ async function processEmployees(employees) {
       let phone = emp['Home Phone (Formatted)'];
       const refinedPhone = "+" + phone.replace(/\D/g, "");
       let companyName = emp['Company Name'] ? emp['Company Name'] : emp['Company '];
-
+let birth_date=emp['Date of Birth']
      
       const options = {
         method: 'GET',
-        url: `https://api.peopledatalabs.com/v5/person/identify?name=${employeeName}&first_name=${firstName}&last_name=${lastName}&email=${email}&company=${companyName}&pretty=false&titlecase=false&include_if_matched=false`,
+        url: `https://api.peopledatalabs.com/v5/person/identify?name=${employeeName}&first_name=${firstName}&phone=${phone}&last_name=${lastName}&email=${email}&company=${companyName}&birth_date=${birth_date}&pretty=false&titlecase=false&include_if_matched=false`,
         headers: {
           accept: 'application/json',
           'Content-Type': 'application/json',
@@ -497,7 +499,7 @@ async function processEmployees(employees) {
 
       console.log("PDL DATA")
       console.log(data?.data?.matches[0]?.data)
-      
+
       if (data?.data?.matches[0]?.data?.linkedin_username) {
         linkedinUsername = data?.data?.matches[0]?.data?.linkedin_username;
       }
@@ -559,13 +561,42 @@ async function processEmployees(employees) {
 console.log("data")
 console.log(categoryScores)
 console.log(overallScore)
+let startDateKey = '';
+let startDateValue = '';
 
-    results.push({
-        name: emp['Employee Name (Last Suffix, First MI)'],
-        email: emp['E-mail Address'],
-        categoryScores,
-        overallScore
-    });
+if (emp['Original Hire']) {
+    startDateKey = 'original_hire';
+    startDateValue = emp['Original Hire'];
+} else if (emp['Seniority Date']) {
+    startDateKey = 'seniority_date';
+    startDateValue = emp['Seniority Date'];
+}
+let employeeData = {
+  name: emp['Employee Name (Last Suffix, First MI)'] || 'N/A',
+  email: emp['E-mail Address'] || 'N/A',
+  last_hire_date: emp['Last Hire Date'] || 'N/A',
+  job_start: emp['Job Start'] || 'N/A',
+  termination_date: emp['Termination Date'] || 'N/A',
+  termination_reason: emp['Termination Reason'] || 'N/A',
+  employement_status: emp['Employment Status'] || 'N/A',
+  date_of_birth: emp['Date of Birth'] || 'N/A',
+  job_title: emp['Job Title'] || 'N/A',
+  department: emp['Department'] || 'N/A',
+  facility: (emp['Facility'] || emp['Entity'] || emp['Subsidiary'] || 'N/A'),
+  categoryScores: categoryScores || {},
+  overallScore: overallScore || 0,
+  phone: phone || 'N/A'
+};
+
+if (startDateKey) {
+  employeeData[startDateKey] = startDateValue;
+}
+
+
+results.push(employeeData);
+
+  await RetentionData.create(employeeData);
+
 
     } catch (e) {
       console.log(`Error processing employee: ${e.message}`);
@@ -578,18 +609,46 @@ console.log(overallScore)
 
 function createDefaultResult(emp) {
   return {
-    name: emp['Employee Name (Last Suffix, First MI)'],
-    email: emp['E-mail Address'],
+    name: emp['Employee Name (Last Suffix, First MI)'] || 'N/A',
+    email: emp['E-mail Address'] || 'N/A',
+    last_hire_date: emp['Last Hire Date'] || 'N/A',
+    job_start: emp['Job Start'] || 'N/A',
+    termination_date: emp['Termination Date'] || 'N/A',
+    termination_reason: emp['Termination Reason'] || 'N/A',
+    employement_status: emp['Employment Status'] || 'N/A',
+    date_of_birth: emp['Date of Birth'] || 'N/A',
+    job_title: emp['Job Title'] || 'N/A',
+    department: emp['Department'] || 'N/A',
+    facility: (emp['Facility'] || emp['Entity'] || emp['Subsidiary'] || 'N/A'),
+    phone: emp['Home Phone (Formatted)'] || 'N/A',
+    
+    // Engagement scores (flat structure)
     'schedule & workload': 0,
     'money & compensation': 0,
     'job satisfaction': 0,
     'family & work-life balance': 0,
     'communication & leadership': 0,
     'lack of rest': 0,
+    
+    // Scores and risk assessment
     totalScore: 0,
-    riskLevel: 'Low',
     overallScore: 0,
-    categoryScores: {},
+    riskLevel: 'Low',
+    possibleImprovedScore: 0,
+    
+    // Nested category scores
+    categoryScores: {
+      'schedule & workload': 0,
+      'money & compensation': 0,
+      'job satisfaction': 0,
+      'family & work-life balance': 0,
+      'communication & leadership': 0,
+      'lack of rest': 0
+    },
+    
+    // Additional fields that might be added conditionally
+    ...(emp['Original Hire'] && { original_hire: emp['Original Hire'] }),
+    ...(emp['Seniority Date'] && { seniority_date: emp['Seniority Date'] })
   };
 }
 

@@ -4,6 +4,7 @@ const csv = require('csv-parser');
 const fs = require('fs');
 const axios = require('axios');
 const scoring = require('./scoringLogic');
+const mongoose=require('mongoose')
 
 const xlsx = require('xlsx')
 const cors=require('cors')
@@ -14,7 +15,7 @@ const upload = multer({ dest: '/tmp/public/files/uploads' });
 app.use(express.json());
 app.use(cors())
 
-
+mongoose.connect('mongodb+srv://user:user@cluster0.pfn059x.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0');
 
 function cleanup(filePath) {
   try {
